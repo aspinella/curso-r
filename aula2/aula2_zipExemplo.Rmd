@@ -1,0 +1,87 @@
+---
+title: "aula2_unzipExemplo"
+output: html_document
+---
+```{r}
+#carrega pacote de leitura xlsx
+library(readxl)
+comentarios<-read_excel(path="comentarios.xlsx")
+legendas_pt_1 = read.csv(file="legendas_pt_1.csv", stringsAsFactors = FALSE)#EUA
+legendas_pt_2 = read.csv2(file="legendas_pt_2.csv", stringsAsFactors = FALSE)#Brasileiros
+legendas<- rbind(legendas_pt_1,legendas_pt_2)#junta as duas bases
+
+```
+#Pacote Stringr
+```{r}
+library(stringr)
+
+```
+```{r}
+comentarios$autor[1:10]
+str_length(c("a","bb","ccc"))
+
+s<-comentarios$texto[79]
+str_trim(s)
+
+a<-comentarios$texto[1:3]
+a
+str_sub(a,start = 2,end=5)
+
+str_to_lower(a)#caixa baixa
+str_to_upper(a)#caixa alta
+
+```
+#Regex Simples
+```{r}
+stringr::str_view(c("banana","bolota","boleto"),"a")
+stringr::str_view(comentarios$texto,"careca",match=TRUE)
+
+```
+###Caracteres especiais
+####pipe | (ou)
+```{r}
+stringr::str_view(comentarios$texto,"careca|clarice",match=TRUE)
+```
+####delimitadores ^
+```{r}
+str_view(comentarios$texto,"^a",match=T)
+
+```
+```{r}
+str_view(comentarios$texto,"!$",match=T)#terminam com exclamação
+```
+####quantificadores
+```{r}
+str_view(comentarios$texto,"k+",match=T)
+str_view(comentarios$texto,"Kk+",match=T)
+str_view(comentarios$texto,"k{4}",match=T)
+str_view(comentarios$texto,"Kk*",match=T)
+str_view(comentarios$texto,"a(es)",match=T)
+```
+####Exercicio
+```{r}
+str_view(comentarios$texto,"KK+",match=T)
+```
+###Conjuntos
+```{r}
+str_view(comentarios$texto,"[Kk]k+",match=T)
+str_view(comentarios$texto,"k+",match=T)
+```
+####Exercicio
+```{r}
+str_view(comentarios$texto,"([^Kk]|^)([Kk][Kk])+([^kK]|$)",match=NA)
+```
+
+####Detect
+```{r}
+str_detect(comentarios$texto[1:10],"careca")
+str_detect(legendas$texto[1:10],"careca")
+str_replace_all(comentarios$texto[1:10],"Kk+","haha")
+str_replace_all(comentarios$texto[1:10]," +","")
+str_extract(comentarios$texto[1:10],"[A-Z]")
+str_match(comentarios$texto[1:10],"([Cc]a)(re)(ca)")
+str_split(comentarios$texto[1:10],pattern=" ")
+str_subset(comentarios$texto,"careca")
+
+```
+

@@ -1,0 +1,123 @@
+---
+title: "aula2"
+output: html_document
+---
+
+```{r}
+#library(tibble)
+
+df_ex <- data.frame(nomes = c("fernando","julio","athos"),
+                    qualidades = c(1,2,3)
+                    )
+lista <- list(nomes = c("fernando","julio","athos"),
+                    qualidades = c(1,2,3))
+attr(lista,"row.names") = 1:3
+attr(lista,"class") = "data.frame"
+
+lista
+View(lista)
+```
+#Exercicio
+###Crie o data.frame que é impresso com os dados abaixo...
+
+```{r}
+dt<-data.frame(id_aluno=c(1:5),
+               opiniao = c("amei","dahora","mto legal","Show",NA),
+               veio_para_aula = c(TRUE,TRUE,TRUE,TRUE,FALSE)
+               )
+lista <-list(id_aluno=c(1:5),
+               opiniao = c("amei","dahora","mto legal","Show",NA),
+               veio_para_aula = c(TRUE,TRUE,TRUE,TRUE,FALSE)
+            )
+attr(lista,"row.names") = 1:5
+attr(lista,"class") = "data.frame"
+View(lista)
+View(dt)
+```
+#Subsetting  
+
+##Vetores
+```{r}
+v<-c("vetor","de","textos")
+v[2]
+v[c(1,2)]
+```
+### com indices negativos
+```{r}
+```
+###com true false
+```{r}
+num = 1:10
+cons <- num<5
+cons
+num[cons]
+num[num<5]
+```
+###cuidado booleanos (reciclagem)
+```{r}
+
+1:10 -1
+
+1:10 - 1:2
+
+v=c("CUIDADO","COM","VETORES","DE","BOOLEANOS","!")
+v[c(TRUE,FALSE)]
+
+```
+###nada
+```{r}
+#retorna todos os dados do vetor
+v[]
+```
+###zero
+```{r}
+v[0]
+```
+###vetores de strings
+```{r}
+v <- c(um=1,dois=2,tres=3)
+v[c("um","tres")]
+```
+
+##exercicio
+```{r}
+v1=c(a=1,b=2,c=3,d=4,e=5,f=6,g=7)
+#a
+a=v1%%2>0
+v1[a]
+#b
+b=v1%%2==0
+v1[b]
+#c
+c=c(5,6,7)
+v1[c]
+#d
+d=c("g","f","e","d","c","b","a")
+v1[d]
+```
+##Matriz
+```{r}
+matriz <- matrix(1:10,5,2)
+str(matriz)
+attributes(matriz)
+matriz
+matriz[1]
+matriz[2,2]
+```
+##Listas
+```{r}
+lista <- list(1,2,3)
+lista
+lista[[1]] #retorna vetor
+lista[1] #retorna lista
+#lista$.. #[[]]
+```
+##Data Frame
+```{r}
+dt=data.frame(id=1:3, nomes=c("a","b","c"))
+dt[1]#seleciona colunas
+dt[1,]#seleciona linhas
+dt[[1]]#retona vetor
+```
+
+
