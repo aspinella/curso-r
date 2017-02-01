@@ -1,0 +1,204 @@
+---
+title: "Relatório para o Diretor"
+output: html_document
+author: "Unknown"
+---
+
+Olá Mundo.
+
+Aqui vai uma lista  
+- A  
+- B  
+- J 
+
+//esta parte mostra o codigo, e a saida
+```{r}
+x <- 2+2
+5*x
+```
+Texto explicado o gráfico... `r 2+2 ` é igual a 2 + 2
+```{r}
+plot(1:10)
+```
+#Ctrl+Alt+i
+```{r}
+(2-1/pi)*4
+2-1/pi*4
+cos(pi/2)
+sin(2*pi)
+1<2
+1>2
+1<=2
+
+.9999999999999999999 ==1
+.9999999999999999 ==1
+!1>2
+
+```
+# Pedindo ajuda
+?(nomeFuncao)
+```{r,eval=FALSE}
+?log
+help(mean)
+```
+
+### Google
+"r cran +(busca)"  
+
+### Stack Overflow
+
+#Instalar Packages  
+### Via R  
+```{r}
+#install.packages("magrittr")
+#uma vez intalado, só basta executar o cod abaixo:
+#library(magrittr)
+```
+
+### Via Github
+ex: https:github.com/rstudio/shiny
+```{r}
+if (!require("devtools"))
+install.packages("devtools")
+devtools::install_github("rstudio/shiny")
+```
+
+###Via Arquivo
+```{r}
+#install.packages("C/caminho/do/arquivozipado.zip",repo=null)
+```
+# Controles de Fluxo  
+ - If,else  
+ - for  
+ - while  
+ 
+# if else
+```{r}
+x <- 1
+# x = 1
+
+if(x == 1){
+  print("oi")  
+}else if(x == 2){
+  pirnt("tchau")
+}else if(x != 9){
+  print("alo alo")
+}else{
+  print("ufa")
+}
+```
+```{r}
+x <- 1
+vetor <- c(1,2,3)
+if(vetor == 1){
+  print("oi")
+}else if(x ==2){
+  print("bye")
+}else if(x != 9){
+  print("alo alo")
+}else{
+  print("ufa")
+}
+```
+### for
+```{r}
+for(cont in 1:5){
+  res <- cont^3
+  print(res)
+}
+```
+```{r}
+vetor <- 30:35
+vetor2 <- 40:45
+indices <- seq_along(vetor)
+for(i in indices){
+  print(vetor[1:i] + vetor2[1:i])
+}
+```
+```{r}
+#set.seed(1)
+jogadas <- 0
+coroa <- FALSE
+
+while(!coroa){
+  coroa<-runif(1) >0.5
+  jogadas <- jogadas +1
+}
+jogadas
+```
+##Objetos  
+
+ - atomic
+ - vetores
+ - matriz
+ - funções
+ - lista
+ - data.frame
+ - fatores
+ - valores especiais
+ - formulas
+ 
+###Atomic
+character 'a!'
+numeric '0.95'
+integer '10015'
+complex '2+5i'
+logical boolean
+
+class("expressão")
+
+### Vetores
+Vetores possuem elementos de uma, e apenas uma classe
+
+**DOMINANTE** char > complex > numeric > int > logical **RECESSIVO**
+```{r}
+vetor1 <- c(10,20,30,40)
+vetor2 <- c(0,10)
+vetor_palavras <- c(10,TRUE,"usp")
+class(vetor_palavras)
+###
+length(vetor1)
+vetor1[1] #vetor começa na posição 1!
+vetor1[0] #devolve nada
+vetor1[c(1,3)] #acessa o indice 1 e 3
+vetor1[c(1,3,1,3)] #acessa o indice 1 e 3, repete dados
+vetor1[c(TRUE,FALSE,TRUE)]
+vetor1[vetor1<25]
+```
+### matrizes
+```{r}
+m <- matrix(1:6, nrow = 4, ncol =3)
+m
+dim(m)
+###
+m[2, ]
+m[ ,3]
+m[1,2]
+m2 <- matrix(1:7,nrow = 4, ncol =4)# recicla vetor
+m %% m2 #multiplicação de matrizes
+mtrans <- t(m2)
+solve(m%%m2) #multiplica elemento à elemento
+```
+### Funções
+
+```{r}
+round(5.634)
+```
+
+```{r}
+dado <- 1:6
+round(mean(dado))
+```
+
+```{r}
+soma <- function(x,y=0){
+  resposta <- x+y
+  
+  return (resposta)
+}
+soma(3,5)
+```
+
+
+
+
